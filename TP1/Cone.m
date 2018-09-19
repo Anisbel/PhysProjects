@@ -27,7 +27,7 @@ classdef Cone
         %fonction a revoir !!!!!
 		function [centre] = CalculeCentreDeMasseCone(obj)
 		
-			centre = [0, 0, obj.Hauteur/4];
+			centre = [obj.Hauteur/4 + obj.Position(1), obj.Position(2), obj.Position(3)];
 		
 		end
     end

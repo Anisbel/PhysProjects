@@ -20,8 +20,7 @@ classdef Avion
             avion.Aileron = Parallelipipede();
             avion.Composantes = [avion.Fuselage, avion.Cabine, avion.AileGauche, avion.AileDroite, avion.Aileron];
         end
-        
-        
+                
     end
 end
 

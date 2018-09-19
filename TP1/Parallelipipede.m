@@ -6,7 +6,7 @@ classdef Parallelipipede
     properties
         CentreDeMasse
         Masse
-        Hauteur
+        Longueur
         Largeur
         Epaisseur
         Position
@@ -18,10 +18,22 @@ classdef Parallelipipede
             %   Detailed explanation goes here
             para.CentreDeMasse = [0,0,0];
             para.Masse = 0;
-            para.Hauteur = 0;
+            para.Longueur = 0;
             para.Largeur = 0;
             para.Epaisseur = 0;
             para.Position = [0,0,0];
+        end
+        
+        function [centre] = CalculeCentreDeMassePara(obj)
+		
+            centre = [ obj.Position(1), obj.Longueur/2 + obj.Position(2), obj.Position(3)];
+		
+        end
+        
+        function [centre] = CentreMasseAileron(obj)
+		
+            centre = [ obj.Position(1), obj.Position(2), obj.Position(3)];
+		
         end
     end
 end

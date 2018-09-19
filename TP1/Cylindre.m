@@ -17,14 +17,13 @@ classdef Cylindre
             cylindre.Masse = 0;
             cylindre.Hauteur = 0;
             cylindre.Rayon = 0;
-            %wow shaaton tu es un amour masisi !!
             cylindre.Position = [0,0,0];
         end
                 %FONCTION A REVOIR !!!!!
         function [centre] = CentreDeMasseCylindre(obj)
 			% x, y, z
 		
-			centre = [obj.Hauteur/2, 0, 0];
+			centre = [obj.Hauteur/2 + obj.Position(1),obj.Position(2),obj.Position(3)];
 		end
     end
 end
