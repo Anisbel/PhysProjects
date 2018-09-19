@@ -9,6 +9,7 @@ classdef Cone
         Hauteur
         Rayon
         Position
+        
     end
     
     methods
@@ -20,7 +21,15 @@ classdef Cone
             cone.Hauteur = 0;
             cone.Rayon = 0;
             cone.Position = [0,0,0];
+            
         end
+        
+        %fonction a revoir !!!!!
+		function [centre] = CalculeCentreDeMasseCone(obj)
+		
+			centre = [0, 0, obj.Hauteur/4];
+		
+		end
     end
 end
 
