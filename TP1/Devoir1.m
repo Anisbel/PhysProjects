@@ -75,7 +75,19 @@ aileron.CentreDeMasse=aileron.CentreMasseAileron();
 % disp("---moteur droit---");
 % disp(moteurDroit.CentreDeMasse);
 
+avion = Avion();
 
+avion.Fuselage = fuselage;
+avion.Cabine = cabinePilotage;
+avion.AileGauche = aileGauche;
+avion.AileDroite = aileDroite;
+avion.Aileron = aileron;
+avion.MoteurGauche = moteurGauche;
+avion.MoteurDroit = moteurDroit;
+
+masseTotale = avion.MasseTotale();
+
+disp(masseTotale);
 
 end
 

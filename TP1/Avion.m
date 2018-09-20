@@ -5,6 +5,8 @@ classdef Avion
     properties
         AileGauche
         AileDroite
+        MoteurGauche
+        MoteurDroit
         Cabine
         Fuselage
         Aileron
@@ -18,7 +20,20 @@ classdef Avion
             avion.AileGauche = Parallelipipede();
             avion.AileDroite = Parallelipipede();
             avion.Aileron = Parallelipipede();
-            avion.Composantes = [avion.Fuselage, avion.Cabine, avion.AileGauche, avion.AileDroite, avion.Aileron];
+            avion.MoteurGauche = Cylindre();
+            avion.MoteurDroit = Cylindre();
+            avion.Composantes = cell(7, 1);
+            avion.Composantes = {avion.Fuselage, avion.Cabine, avion.AileGauche, avion.AileDroite, avion.Aileron, avion.MoteurGauche, avion.MoteurDroit};
+        end
+        
+        function masseTotale = MasseTotale(obj)
+            masseTotale = obj.Fuselage.Masse + obj.Cabine.Masse + obj.AileGauche.Masse + obj.AileDroite.Masse + obj.Aileron.Masse + obj.MoteurGauche.Masse + obj.MoteurDroit.Masse;
+        end
+        
+        function [centre] = CentreDeMasseAvion(obj)
+            for n = 1:7
+                
+            end
         end
                 
     end
