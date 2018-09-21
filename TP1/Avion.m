@@ -31,9 +31,7 @@ classdef Avion
         end
         
         function [centre] = CentreDeMasseAvion(obj)
-            for n = 1:7
-                
-            end
+            centre = ((obj.Fuselage.Masse * obj.Fuselage.CentreDeMasse)+ (obj.Cabine.Masse * obj.Cabine.CentreDeMasse)+ (obj.AileGauche.Masse * obj.AileGauche.CentreDeMasse) + (obj.AileDroite.Masse * obj.AileDroite.CentreDeMasse) + (obj.Aileron.Masse * obj.Aileron.CentreDeMasse) + (obj.MoteurGauche.Masse * obj.MoteurGauche.CentreDeMasse) + (obj.MoteurDroit.Masse * obj.MoteurDroit.CentreDeMasse))/ obj.MasseTotale();
         end
                 
     end

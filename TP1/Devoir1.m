@@ -89,5 +89,9 @@ masseTotale = avion.MasseTotale();
 
 disp(masseTotale);
 
+centreAvion = avion.CentreDeMasseAvion();
+
+disp(centreAvion);
+
 end
 
