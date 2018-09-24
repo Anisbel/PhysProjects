@@ -78,7 +78,7 @@ masseTotale = avion.MasseTotale();
 disp(masseTotale);
 
 centreAvionLoc = avion.CentreDeMasseAvion();
-centreAvion = Rotation(0, centreAvionLoc);
+centreAvion = Rotation(ar, centreAvionLoc);
 posNez0 = [22.95 + cabinePilotage.Hauteur,0,cabinePilotage.Rayon+eppaiseurAil];
 
 diff = posA - posNez0;

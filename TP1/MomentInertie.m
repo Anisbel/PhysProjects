@@ -108,8 +108,9 @@
             %fin de la boucle 'for'
             
             %Matrice de rotation (la rotation est autour  de l'axe des y
-            RotY = [cos(ar), 0, sin(ar); 0, 1, 0; -sin(ar),0, cos(ar)];
-            inertieTotale = RotY * transpose(inertieCalcul);
+%             RotY = [cos(ar), 0, sin(ar); 0, 1, 0; -sin(ar),0, cos(ar)];
+%             inertieTotale = RotY * transpose(inertieCalcul);
+              inertieTotale = inertieCalcul;
         end
         
     end

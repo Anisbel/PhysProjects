@@ -21,7 +21,7 @@ nezAvionEnZ=epaisseurAil+rayonConeCabine;
 posA=[nezDeLavionEnX,0,nezAvionEnZ]; 
 va=[0;0;0];
 ar=0;
-Forces=[11000000; 11000000; 0];
+Forces=[11000000; 11000000; 260000000];
 % Cas 1
 disp('---- CAS 1 ----');
 [pcm, MI, aa]=Devoir1(posA,ar,va,Forces);
@@ -41,6 +41,7 @@ disp('---- CAS 2 ----');
 posA = [4198, 0, 618];
 ar = 0.15;
 va = [0.0; -0.003; -0.01];
+Forces = [8000000; 11000000; 260000000];
 [pcm, MI, aa]=Devoir1(posA,ar,va,Forces);
 
 disp('---- Centre de Masse ----');
