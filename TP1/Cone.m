@@ -5,6 +5,7 @@ classdef Cone
     
     properties
         CentreDeMasse
+        MI
         Masse
         Hauteur
         Rayon
@@ -21,6 +22,7 @@ classdef Cone
             cone.Hauteur = 0;
             cone.Rayon = 0;
             cone.Position = [0,0,0];
+            cone.MI = [0,0,0];
             
         end
         
@@ -29,7 +31,13 @@ classdef Cone
 		
 			centre = [obj.Hauteur/4 + obj.Position(1), obj.Position(2), obj.Position(3)];
 		
-		end
+        end
+        
+        function [momentInertie] = CalculMomentInertie(obj)
+		
+			momentInertie = MomentInertie.InertieCone(obj.Masse, obj.Rayon, obj.Hauteur);
+		
+        end
     end
 end
 
