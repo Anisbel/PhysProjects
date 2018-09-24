@@ -75,9 +75,13 @@
 %Variable de sortie :
 % inertieAjustee --> matrice de l'inertie ajust?e de l'objet en kg.m?
 
-                dx = cmGlob(1) - cmObj(1);
-                dy = cmGlob(2) - cmObj(2);
-                dz = cmGlob(3) - cmObj(3);
+%                 dx = cmGlob(1) - cmObj(1);
+%                 dy = cmGlob(2) - cmObj(2);
+%                 dz = cmGlob(3) - cmObj(3);
+
+                dx = cmObj(1) - cmGlob(1);
+                dy = cmObj(2) - cmGlob(2);
+                dz = cmObj(3) - cmGlob(3);
                 
                 inertieAjustee = [0 0 0 ;0 0 0;0 0 0];
                 
@@ -108,9 +112,8 @@
             %fin de la boucle 'for'
             
             %Matrice de rotation (la rotation est autour  de l'axe des y
-%             RotY = [cos(ar), 0, sin(ar); 0, 1, 0; -sin(ar),0, cos(ar)];
-%             inertieTotale = RotY * transpose(inertieCalcul);
-              inertieTotale = inertieCalcul;
+            RotY = [cos(ar), 0, sin(ar); 0, 1, 0; -sin(ar),0, cos(ar)];
+            inertieTotale = RotY * inertieCalcul * transpose(RotY);
         end
         
     end

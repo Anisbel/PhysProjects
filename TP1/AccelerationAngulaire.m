@@ -10,21 +10,24 @@
 			
     
 			%momentDeForce = MomentForce(positionForce, centreDeMasse, force);
+            
             momentForce_md = MomentForce(posF(:,1), [Forces(1); 0;0 ]);
             momentForce_mg = MomentForce(posF(:,2), [Forces(2); 0; 0]);
             momentForce_p = MomentForce(posF(:,3), [0; 0; Forces(3)]);
             
             momentMoteur = momentForce_md + momentForce_mg ;
             
+            
             %L(t) = I(t) * omega(t)
             momentCinetique = I * va;
+
+            momentsRot = transpose(Rotation(ar,momentMoteur'))+ momentForce_p;  % la rotation est appliqu?e seulement aux forces sur les moteurs puisque la force de port?e ast toujour verticale
             
 
-            momentsRot = Rotation(ar,momentMoteur')+ momentForce_p;  % la rotation est appliqu?e seulement aux forces sur les moteurs puisque la force de port?e ast toujour verticale
-            
             %a(t) = I(t)^-1 * (tau(t) + L(t) x omega(t)
             %accelerationAngulaire = inv(momentInertie) * (momentDeForce + cross(momentCinetique, vitesseAngulaire));
             accelerationAngulaire = inv(I) * (momentsRot + cross(momentCinetique,va ));
+
         end
         
         function [ tau ] = MomentForce(posForce, force)

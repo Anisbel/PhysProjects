@@ -29,7 +29,7 @@ moteurDroit = Cylindre();
 moteurDroit.Masse=1.7;
 moteurDroit.Hauteur=3.68;
 moteurDroit.Rayon= 0.724;
-moteurDroit.Position=[5,-(fuselage.Rayon+moteurDroit.Rayon),fuselage.Rayon-eppaiseurAil];
+moteurDroit.Position=[5,-(fuselage.Rayon+moteurDroit.Rayon),fuselage.Rayon+eppaiseurAil];
 moteurDroit.CentreDeMasse=moteurDroit.CentreDeMasseCylindre();
 moteurDroit.MI = moteurDroit.CalculMomentInertie();
 
@@ -75,7 +75,6 @@ avion.MoteurGauche = moteurGauche;
 avion.MoteurDroit = moteurDroit;
 masseTotale = avion.MasseTotale();
 
-disp(masseTotale);
 
 centreAvionLoc = avion.CentreDeMasseAvion();
 centreAvion = Rotation(ar, centreAvionLoc);
@@ -90,16 +89,32 @@ centreFinal = centreAvion + diff;
 
 MI_fuselage = MomentInertie.InertieAjusteeCM(fuselage.MI, fuselage.Masse, fuselage.CentreDeMasse, centreFinal);
 MI_cabine = MomentInertie.InertieAjusteeCM(cabinePilotage.MI, cabinePilotage.Masse, cabinePilotage.CentreDeMasse, centreFinal);
+
 MI_aileD = MomentInertie.InertieAjusteeCM(aileDroite.MI, aileDroite.Masse, aileDroite.CentreDeMasse, centreFinal);
 MI_aileG = MomentInertie.InertieAjusteeCM(aileGauche.MI, aileGauche.Masse, aileGauche.CentreDeMasse, centreFinal);
 MI_motD = MomentInertie.InertieAjusteeCM(moteurDroit.MI, moteurDroit.Masse, moteurDroit.CentreDeMasse, centreFinal);
 MI_motG = MomentInertie.InertieAjusteeCM(moteurGauche.MI, moteurGauche.Masse, moteurGauche.CentreDeMasse, centreFinal);
 MI_aileron = MomentInertie.InertieAjusteeCM(aileron.MI, aileron.Masse, aileron.CentreDeMasse, centreFinal);
 
+% disp('-------------MMMMMMM-----------------');
+% disp(MI_fuselage);
+% disp('-------------MI_cabine-----------------');
+% disp(MI_cabine);
+% disp('-------------MI_aileD-----------------');
+% disp(MI_aileD);
+% disp('-------------MI_aileG-----------------');
+% disp(MI_aileG);
+% disp('-------------MI_motD-----------------');
+% disp(MI_motD);
+% disp('-------------MI_motG-----------------');
+% disp(MI_motG);
+% disp('-------------MI_aileron-----------------');
+% disp(MI_aileron);
 Vecteur_MI_objets = [MI_fuselage, MI_cabine, MI_aileD, MI_aileG, MI_motD, MI_motG, MI_aileron];
 
-MIsansRot = MomentInertie.InertieSysteme(Vecteur_MI_objets, ar);
-MI = Rotation(ar, MIsansRot);
+MI = MomentInertie.InertieSysteme(Vecteur_MI_objets, ar);
+%MIsansRot = MI_fuselage + MI_cabine + MI_aileD + MI_aileG + MI_motD + MI_motG + MI_aileron;
+%MI = Rotation(ar, MIsansRot);
 
 pcm = centreFinal;
 
@@ -112,10 +127,15 @@ eA = aileDroite.Epaisseur;
 
 
 % Position des forces appliquees sur l'avion
-pos_md = [5-Lm/2;rc+rm;eA+rc] - pcm+diff; % position de l'application de la force sur le moteur droit 
-pos_mg = [5-Lm/2;-(rc+rm);eA+rc] - pcm+diff; % position de l'application de la force sur le moteur gauche
-pos_p = [10.54;0;0] - pcm+diff; % position de la force de la portee
+pos_md = [5-Lm/2;-(rc+rm);eA+rc] - transpose(pcm+diff); % position de l'application de la force sur le moteur droit 
+pos_mg = [5-Lm/2;rc+rm;eA+rc] - transpose(pcm+diff); % position de l'application de la force sur le moteur gauche
+pos_p = [10.54;0;0] - transpose(pcm+diff); % position de la force de la portee
+
+
 posF=[pos_md,pos_mg,pos_p];
+
+
+
 aa = AccelerationAngulaire( ar, posF, MI, va,Forces );
 % disp('Son acceleration angulaire en rad/s est ');
 
